@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Painel do Usuário
+{% endblock %}
+
+{% block body %}
+	<style>
+		.dashboard-wrapper {
+			margin: 2em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+			background-color: #f9f9f9;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+		.dashboard-title {
+			font-size: 24px;
+			margin-bottom: 20px;
+			color: #333;
+		}
+	</style>
+
+	<div class="dashboard-wrapper">
+		<h1 class="dashboard-title">Bienvenue à AfloBiblio,
+			{% if app.user %}
+				{{ app.user.username }}!
+			{% else %}
+				visiteur!
+			{% endif %}
+		</h1>
+		{% if app.user %}
+			<p>Choisissez ce que vous souhaitez faire ou ne pas faire .:</p>
+			<ul>
+				<ul>
+					<li>
+						<a type="onclick" href="{{ url('app_book_index') }}">Voir mes livres</a>
+					</li>
+					<li>
+						<a type="onclick" href="{{ url('app_emprunt_index') }}">Voir mes emprunts</a>
+					</li>
+					<li>
+						<a type="onclick" href="{{ url('app_reservation_index') }}">Voir mes reservation</a>
+					</li>
+				</ul>
+			{% else %}
+				<p class="bg-gradient-to-right-purple-blue">Connecte toi  vielle petite canaille....</p>
+
+			{% endif %}
+
+		</ul>
+	</div>
+{% endblock %}
